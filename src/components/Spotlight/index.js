@@ -1,32 +1,36 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import { Sprite } from '../Sprite'
-import { InfoPanel } from '../InfoPanel'
+import Sprite from '../Sprite'
+import InfoPanel from '../InfoPanel'
 
 const Container = styled.div`
   display: flex;
   flex-direction: row;
 `
-Container.displayName = 'Container'
 
 const SpriteContainer = styled.div`
   align-items: center;
   border: 2px solid darkgrey;
   border-radius: 3px;
   display: flex;
-  height: 200px;
+  height: 100px;
   justify-content: center;
-  width: 200px;
+  width: 100px;
 `
-SpriteContainer.displayName = 'SpriteContainer'
 
-export const Spotlight = ({ id }) => (
+const Spotlight = ({ pokemonData }) => (
   <Container>
     <SpriteContainer>
-      <Sprite id={151} />
+      <Sprite id={pokemonData.id} />
     </SpriteContainer>
-    <InfoPanel />
+    <InfoPanel pokemonData={pokemonData} />
   </Container>
 )
-Spotlight.displayName = 'Spotlight'
+
+InfoPanel.propTypes = {
+  pokemonData: PropTypes.object,
+}
+
+export default Spotlight

@@ -1,17 +1,16 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
 `
-Container.displayName = 'Container'
 
 const Header = styled.div`
   display: flex;
   flex-direction: row;
 `
-Header.displayName = 'Header'
 
 const PokemonNumber = styled.div`
   border-radius: 3px;
@@ -19,20 +18,30 @@ const PokemonNumber = styled.div`
   padding: 5px;
   font-weight: bold;
 `
-PokemonNumber.displayName = 'PokemonNumber'
 
-const PokemonName = styled.div`
+const PokemonName = styled.span`
   font-size: 14px;
+  text-transform: capitalize;
   color: black;
+  margin-left: 8px;
 `
-PokemonName.displayName = 'PokemonName'
 
-export const InfoPanel = () => (
-  <Container>
-    <Header>
-      <PokemonNumber>#001</PokemonNumber>
-      <PokemonName>Bulbasaur</PokemonName>
-    </Header>
-  </Container>
-)
-InfoPanel.displayName = 'InfoPanel'
+const InfoPanel = ({ pokemonData }) => {
+  const { id, name, url } = pokemonData
+  const formattedId = ('000' + id).slice(-3)
+
+  return (
+    <Container>
+      <Header>
+        <PokemonNumber>#{formattedId}</PokemonNumber>
+        <PokemonName>{name}</PokemonName>
+      </Header>
+    </Container>
+  )
+}
+
+InfoPanel.propTypes = {
+  pokemonData: PropTypes.object,
+}
+
+export default InfoPanel
