@@ -26,8 +26,7 @@ const PokemonName = styled.span`
   margin-left: 8px;
 `
 
-const InfoPanel = ({ pokemonData }) => {
-  const { id, name, url } = pokemonData
+const InfoPanel = ({ id, name, url }) => {
   const formattedId = ('000' + id).slice(-3)
 
   return (
